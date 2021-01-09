@@ -12,7 +12,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.deepOrange,
+        accentColor: Colors.amber,
       ),
       home: MyHomePage(title: 'Monthly Tracking Expense'),
     );
@@ -28,7 +29,18 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  final List<Transaction> _userTransaction = [];
+  final List<Transaction> _userTransaction = [
+    Transaction(
+        id: DateTime.now().toString(),
+        title: "Shirt",
+        amount: 20.0,
+        date: DateTime.now()),
+    Transaction(
+        id: DateTime.now().toString(),
+        title: "Shoe",
+        amount: 40.0,
+        date: DateTime.now())
+  ];
   double _budget = 500.0;
   double _balance;
 
@@ -44,7 +56,7 @@ class _MyHomePageState extends State<MyHomePage> {
               height: 20,
             ),
             Card(
-                elevation: 5,
+                elevation: 6,
                 child: Container(
                     alignment: Alignment.center,
                     padding: EdgeInsets.all(12),
@@ -54,12 +66,34 @@ class _MyHomePageState extends State<MyHomePage> {
                       style:
                           TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
                     ))),
-            Row(
-              children: [
-                Container(
-                  child: Text('Transaction List'),
-                )
-              ],
+            SizedBox(
+              height: 20,
+            ),
+            Container(
+              height: 600,
+              child: ListView.builder(
+                itemCount: _userTransaction.length,
+                itemBuilder: (context, index) {
+                  return Card(
+                    elevation: 5,
+                    margin: EdgeInsets.symmetric(vertical: 8, horizontal: 5),
+                    child: ListTile(
+                      leading: CircleAvatar(
+                          radius: 30,
+                          child: Padding(
+                              padding: EdgeInsets.all(6),
+                              child: FittedBox(
+                                  child: Text(
+                                      '\$${_userTransaction[index].amount}')))),
+                      title: Text(_userTransaction[index].title),
+                      subtitle: Text(_userTransaction[index].date.toString()),
+                      trailing: IconButton(
+                        icon: Icon(Icons.delete),
+                      ),
+                    ),
+                  );
+                },
+              ),
             ),
           ],
         ));

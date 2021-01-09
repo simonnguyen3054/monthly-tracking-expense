@@ -35,13 +35,20 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
         body: Column(
           children: [
-            Row(
-              children: [
-                Container(
-                  child: Text('Balance Panel'),
-                )
-              ],
+            SizedBox(
+              height: 20,
             ),
+            Card(
+                elevation: 5,
+                child: Container(
+                    alignment: Alignment.center,
+                    padding: EdgeInsets.all(12),
+                    width: 300,
+                    child: Text(
+                      'Balance: \$500',
+                      style:
+                          TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                    ))),
             Row(
               children: [
                 Container(

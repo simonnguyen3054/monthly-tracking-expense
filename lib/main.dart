@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:monthlyl_expense_tracking/models/transactions.dart';
 
 void main() {
   runApp(MyApp());
@@ -27,6 +28,10 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  final List<Transaction> _userTransaction = [];
+  double _budget = 500.0;
+  double _balance;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -45,7 +50,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     padding: EdgeInsets.all(12),
                     width: 300,
                     child: Text(
-                      'Balance: \$500',
+                      'Balance: \$${this._budget}',
                       style:
                           TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
                     ))),

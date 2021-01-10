@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:monthlyl_expense_tracking/models/transactions.dart';
+import 'package:intl/intl.dart';
 
 void main() {
   runApp(MyApp());
@@ -86,7 +87,8 @@ class _MyHomePageState extends State<MyHomePage> {
                                   child: Text(
                                       '\$${_userTransaction[index].amount}')))),
                       title: Text(_userTransaction[index].title),
-                      subtitle: Text(_userTransaction[index].date.toString()),
+                      subtitle: Text(DateFormat.yMMMd()
+                          .format(_userTransaction[index].date)),
                       trailing: IconButton(
                         icon: Icon(Icons.delete),
                       ),
